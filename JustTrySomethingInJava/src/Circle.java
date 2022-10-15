@@ -25,7 +25,7 @@ class Circle extends BaseShape {
     public String toString(){
         return String.format("Shape type: Circle\n" +
                 "Radius length: %s\n" +
-                "Ares: %s\n" +
+                "Area: %s\n" +
                 "Perimeter: %s", this.radius, this.Area(), this.Perimeter());
     }
 }

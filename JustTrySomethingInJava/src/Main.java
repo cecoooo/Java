@@ -10,6 +10,9 @@ public class Main {
         System.out.println("------------------------");
         Square sq = new Square(6);
         System.out.println(sq.toString());
+        Rectangle rect = new Rectangle(4, 6);
+        System.out.println("------------------------");
+        System.out.println(rect.toString());
     }
 }
 

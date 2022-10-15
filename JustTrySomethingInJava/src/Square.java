@@ -29,7 +29,7 @@ class Square extends BaseShape {
     public String toString() {
         return String.format("Shape type: Square\n" +
                 "Side length: %s\n" +
-                "Ares: %s\n" +
+                "Area: %s\n" +
                 "Perimeter: %s", this.side, this.Area(), this.Perimeter());
     }
 }
