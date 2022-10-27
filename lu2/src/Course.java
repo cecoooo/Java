@@ -1,2 +1,17 @@
-package PACKAGE_NAME;public class Course {
+public class Course {
+    private String courseName;
+
+    public String getCourseName() {
+        return this.courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+    public Course(){
+        this.courseName = "";
+    }
+    public Course(String courseName){
+        this.courseName = courseName;
+    }
 }
