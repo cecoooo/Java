@@ -3,7 +3,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class ProductLoader implements ImportData{
+public class ProductLoader implements ImportData {
     File file;
 
     public File getFile() {
@@ -14,7 +14,7 @@ public class ProductLoader implements ImportData{
         this.file = file;
     }
 
-    private int getNumberOfRows() throws IOException{
+    private int getNumberOfRows() throws IOException {
         int rows = 0;
         BufferedReader bf = null;
         String line;
@@ -26,33 +26,32 @@ public class ProductLoader implements ImportData{
 
     @Override
     public Object[] importDataFromFile() throws IOException {
-        try{
+        try {
             Object[] obj = new Object[getNumberOfRows()];
             BufferedReader bf = null;
             String line;
             bf = new BufferedReader(new FileReader("salesproducts.txt"));
-            while ((line = bf.readLine()) != null){
+            while ((line = bf.readLine()) != null) {
                 char[] arr = new char[line.length()];
-                if(arr[0] == '1'){
+                if (arr[0] == '1') {
                     Electronics el = new Electronics();
-                }
-                else{
+                } else {
                     Book book = new Book();
                 }
                 String data = "";
-                for (int i = 1; i < line.length(); i++){
-                    if(arr[i] != '#'){
+                for (int i = 1; i < line.length(); i++) {
+                    if (arr[i] != '#') {
                         data += arr[i];
-                    }
-                    else{
+                    } else {
 
                         data = "";
                     }
                 }
             }
             return obj;
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
+        return new Object[0];
     }
 }
