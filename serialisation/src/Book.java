@@ -1,11 +1,12 @@
-public class Book {
+import java.io.Serializable;
+
+public class Book implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String author;
     private String title;
     private double price;
 
-    public void setAuthor(String author){
-        this.author = author;
-    }
+    public void setAuthor(String author){this.author = author;}
     public void setTitle(String title){
         this.title = title;
     }
