@@ -6,8 +6,8 @@ public class Main {
 
         try {
             Book b1 = new Book("Zahari Karabashliev", "18% sivo", 20);
-            Book b2 = new Book("Jules Vern", "Nemo", 35);
-            Book b3 = new Book("Omir", "Iliada", 30);
+            Book b2 = new Book("James Clavell", "King Rat", 35);
+            Book b3 = new Book("Steven King", "It", 30);
             ArrayList<Book> arrBooks = new ArrayList<>();
             FileOutputStream fileOut = new FileOutputStream("C:\\Users\\User\\Desktop\\library.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
