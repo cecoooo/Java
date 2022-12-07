@@ -2,9 +2,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Provider implements ValidatePhone{
-
-    String phoneNumber;
-    String name;
+    private String phoneNumber;
+    private String name;
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -23,13 +22,11 @@ public class Provider implements ValidatePhone{
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
 
     public Provider(){
-
     }
     public Provider(String pn, String name){
         this.phoneNumber = pn;

@@ -1,20 +1,17 @@
 public class Electronics extends Product{
 
-    String manufacturer;
-    String model;
+    private String manufacturer;
+    private String model;
 
     public String getModel() {
         return model;
     }
-
     public void setModel(String model) {
         this.model = model;
     }
-
     public String getManufacturer() {
         return manufacturer;
     }
-
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
     }
@@ -29,12 +26,12 @@ public class Electronics extends Product{
 
     @Override
     double getPromotionalPrice() {
-        return this.price*0.9;
+        return this.getPrice()*0.9;
     }
 
     @Override
     boolean sellProduct(int piece) {
-        int remain = this.quantity - piece;
+        int remain = this.getQuantity() - piece;
         if(remain >= 0)
             return true;
         try{

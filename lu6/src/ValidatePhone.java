@@ -1,3 +1,3 @@
 public interface ValidatePhone {
-    boolean   validatePhoneNumber(String   phoneNumber);
+    boolean validatePhoneNumber(String phoneNumber);
 }

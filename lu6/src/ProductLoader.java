@@ -25,7 +25,7 @@ public class ProductLoader implements ImportData {
         int rows = 0;
         BufferedReader bf = null;
         String line;
-        bf = new BufferedReader(new FileReader("salesproducts.txt"));
+        bf = new BufferedReader(new FileReader("C:\\Users\\User\\Desktop\\PushToGithub\\java\\lu6\\src\\salesproducts.txt"));
         while ((line = bf.readLine()) != null)
             rows++;
         return rows;
@@ -38,48 +38,53 @@ public class ProductLoader implements ImportData {
             BufferedReader bf = null;
             String line;
             int objCount = 0;
-            bf = new BufferedReader(new FileReader("salesproducts.txt"));
+            bf = new BufferedReader(new FileReader("C:\\Users\\User\\Desktop\\PushToGithub\\java\\lu6\\src\\salesproducts.txt"));
             while ((line = bf.readLine()) != null) {
-                char[] arr = new char[line.length()];
-                String[] dataArr = new String[7];
-                String data = "";
+                StringBuffer[] dataArr = new StringBuffer[7];
+                StringBuffer data = new StringBuffer();
                 int c = 0;
-                for (int i = 2; i < line.length()-1; i++){
-                    if(arr[i] != '#')
-                        data+=arr[i];
+                for (int i = 2; i < line.length(); i++){
+                    if(line.charAt(i) != '#')
+                        data.append(line.charAt(i));
                     else{
                         dataArr[c] = data;
+                        data = new StringBuffer();
                         c++;
-                        data = "";
                     }
                 }
-                if(arr[0] == '1'){
+                if(line.charAt(0) == '1'){
                     Electronics electronic = new Electronics();
-                    electronic.provider.name = dataArr[0];
-                    electronic.provider.phoneNumber = dataArr[1];
-                    electronic.inventoryNumber = dataArr[2];
-                    electronic.price = Double.parseDouble(dataArr[3]);
-                    electronic.quantity = Integer.parseInt(dataArr[4]);
-                    electronic.model = dataArr[5];
-                    electronic.manufacturer = dataArr[6];
+                    Provider provider = new Provider();
+                    provider.setName(dataArr[0].toString());
+                    provider.setPhoneNumber(dataArr[1].toString());
+                    electronic.setProvider(provider);
+                    electronic.setInventoryNumber(dataArr[2].toString());
+                    electronic.setPrice(Double.parseDouble(dataArr[3].toString()));
+                    electronic.setQuantity(Integer.parseInt(dataArr[4].toString()));
+                    electronic.setModel(dataArr[5].toString());
+                    electronic.setManufacturer(dataArr[6].toString());
                     obj[objCount] = electronic;
+                    objCount++;
                 }
                 else{
                     Book book = new Book();
-                    book.provider.name = dataArr[0];
-                    book.provider.phoneNumber = dataArr[1];
-                    book.inventoryNumber = dataArr[2];
-                    book.price = Double.parseDouble(dataArr[3]);
-                    book.quantity = Integer.parseInt(dataArr[4]);
-                    book.author = dataArr[5];
-                    book.title = dataArr[6];
+                    Provider provider = new Provider();
+                    provider.setName(dataArr[0].toString());
+                    provider.setPhoneNumber(dataArr[1].toString());
+                    book.setProvider(provider);
+                    book.setInventoryNumber(dataArr[2].toString());
+                    book.setPrice(Double.parseDouble(dataArr[3].toString()));
+                    book.setQuantity(Integer.parseInt(dataArr[4].toString()));
+                    book.setAuthor(dataArr[5].toString());
+                    book.setTitle(dataArr[6].toString());
                     obj[objCount] = book;
+                    objCount++;
                 }
             }
             return obj;
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
-        return new Object[0];
     }
 }

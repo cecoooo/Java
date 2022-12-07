@@ -1,14 +1,12 @@
-import java.io.IOException;
-
 public class Test {
     public static void main(String[] args) {
-        ProductLoader productLoader = new ProductLoader();
-        try {
-            productLoader.importDataFromFile();
-            BlackFriday blackFriday = new BlackFriday();
-            blackFriday.processSales(productLoader);
-        }catch (IOException e) {
-            e.printStackTrace();
+        BlackFriday blackFriday = new BlackFriday();
+        blackFriday.processSales();
+        for (int i = 0; i < blackFriday.electronicsArray.length; i++){
+            System.out.println(blackFriday.electronicsArray[i].getModel());
+        }
+        for (int i = 0; i < blackFriday.booksArray.length; i++){
+            System.out.println(blackFriday.booksArray[i].getAuthor());
         }
     }
 }

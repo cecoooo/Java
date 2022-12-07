@@ -1,45 +1,36 @@
 import java.io.IOException;
 
 public class BlackFriday {
-
-    private ProductLoader productLoader;
-
-    public void setProductLoader(ProductLoader pr) {
-        this.productLoader = pr;
-    }
-
-    public ProductLoader getProductLoader() {
-        return productLoader;
-    }
-
-    public BlackFriday(){
-
-    }
-    public BlackFriday(ProductLoader pr){
-        this.productLoader = pr;
-    }
-
-    public static void processSales(ProductLoader productLoader){
-        int elLen = 0;
-        int bookLen = 0;
+    public static Electronics[] electronicsArray;
+    public static Book[] booksArray;
+    public void processSales(){
+        ProductLoader productLoader = new ProductLoader();
         try {
             Object[] arr = productLoader.importDataFromFile();
-            for (int i = 0; i < arr.length; i++){
-                if(arr[i] instanceof Electronics)
-                    elLen++;
-                else
-                    bookLen++;
+            int countEl = 0;
+            int countBook = 0;
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i] instanceof Electronics)
+                    countEl++;
+                else if (arr[i] instanceof Book)
+                    countBook++;
             }
-            Electronics[] electronics = new Electronics[elLen];
-            Book[] books = new Book[bookLen];
-            int elCount = 0;
-            int bookCount = 0;
-            for (int i = 0; i < arr.length; i++){
-                if(arr[i] instanceof Electronics)
-                    electronics[elCount] = (Electronics) arr[i];
-                else
-                    books[bookCount] = (Book) arr[i];
+            Electronics[] arrEl = new Electronics[countEl];
+            Book[] arrB = new Book[countBook];
+            int e = 0;
+            int b = 0;
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i] instanceof Electronics) {
+                    arrEl[e] = (Electronics) arr[i];
+                    e++;
+                }
+                else if (arr[i] instanceof Book) {
+                    arrB[b] = (Book) arr[i];
+                    b++;
+                }
             }
+            this.electronicsArray = arrEl;
+            this.booksArray = arrB;
         }catch (IOException e){
             e.printStackTrace();
         }
