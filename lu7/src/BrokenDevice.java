@@ -1,7 +1,9 @@
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class BrokenDevice extends Device{
+public class BrokenDevice extends Device implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private String symptoms;
     private int daysToRecover;
 
@@ -24,20 +26,20 @@ public class BrokenDevice extends Device{
 
 
     public BrokenDevice(){
-        super();
+
     }
-    public BrokenDevice(String b, String m, double p, String id, String s, int d){
-        super();
-        this.symptoms = s;
-        this.daysToRecover = d;
+    public BrokenDevice(String brand, String model, double price, String id, String symptoms, int daysToRecover){
+        super(brand, model, price, id);
+        this.symptoms = symptoms;
+        this.daysToRecover = daysToRecover;
     }
 
     public void EnterData(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter device data.");
-        System.out.print("brand:");
+        System.out.print("Symptoms:");
         this.symptoms = sc.nextLine();
-        System.out.print("model:");
+        System.out.print("Days to recover:");
         this.daysToRecover = sc.nextInt();
     }
 

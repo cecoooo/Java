@@ -1,6 +1,8 @@
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Device implements java.io.Serializable {
+public class Device implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String brand;
     private double price;
     private String model;
@@ -38,10 +40,10 @@ public class Device implements java.io.Serializable {
     public Device(){
 
     }
-    public Device(String b, String m, double p, String id){
-        this.brand = b;
-        this.model = m;
-        this.price = p;
+    public Device(String brand, String model, double price, String id){
+        this.brand = brand;
+        this.model = model;
+        this.price = price;
         this.id = id;
     }
 
