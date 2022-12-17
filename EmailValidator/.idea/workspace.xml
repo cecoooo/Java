@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="597adf63-fd2c-409f-910c-29d32b98eb7a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../lu7/src/BrokenDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lu7/src/BrokenDevice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lu7/src/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lu7/src/Service.java" afterDir="false" />
-    </list>
+    <list default="true" id="597adf63-fd2c-409f-910c-29d32b98eb7a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,6 +49,7 @@
       <workItem from="1668420680063" duration="43000" />
       <workItem from="1668447980846" duration="25000" />
       <workItem from="1671101028639" duration="241000" />
+      <workItem from="1671285304641" duration="82000" />
     </task>
     <servers />
   </component>
