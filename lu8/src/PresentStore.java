@@ -13,23 +13,23 @@ public class PresentStore {
         this.devApi = list2;
     }
 
-    public ArrayList<GetProductsTo> getProductPrice(double maxPrice){
-        ArrayList<GetProductsTo> list = new ArrayList<>();
-        for(GetProductsTo product: products){
-            if(product.getPrice()<maxPrice){
-                list.add(product);
+    public ArrayList<GetProductsTo> CheaperThan(double price){
+        ArrayList<GetProductsTo> res = new ArrayList<>();
+        for (int i = 0; i < this.products.size(); i++){
+            if(this.products.get(i).getPrice() < price){
+                res.add(this.products.get(i));
             }
         }
-        return list;
+        return res;
     }
 
-    public ArrayList<DeliveryAPI> getAllProducts(int id){
-        ArrayList<DeliveryAPI> list = new ArrayList<>();
-        for(DeliveryAPI deliveryAPI : devApi){
-            if(deliveryAPI.getIdOfProvider()==id){
-                list.add(deliveryAPI);
+    public ArrayList<DeliveryAPI> SelectByID(int id){
+        ArrayList<DeliveryAPI> res = new ArrayList<>();
+        for (int i = 0; i < this.devApi.size(); i++){
+            if(this.devApi.get(i).getIdOfProvider() == id){
+                res.add(this.devApi.get(i));
             }
         }
-        return list;
+        return res;
     }
 }

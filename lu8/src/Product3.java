@@ -16,26 +16,33 @@ public class Product3 implements DeliveryAPI, GetProductsTo {
 
     @Override
     public int getNumber(int idOfProvider) {
-        return 0;
+        return this.number;
     }
 
     @Override
     public String getType(int idOfProvider) {
-        return null;
+        return this.type;
     }
 
     @Override
     public int getIdOfProvider() {
-        return 0;
+        return this.idOfProvider;
     }
 
     @Override
     public double getPrice() {
-        return 0;
+        return this.price;
     }
 
     @Override
     public String getType() {
-        return null;
+        return this.type;
+    }
+
+    public String toString(){
+        return this.type + "\n"+
+                this.price + "\n"+
+                this.idOfProvider+ "\n"+
+                this.number;
     }
 }

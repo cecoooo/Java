@@ -7,6 +7,7 @@ public class Product1 implements DeliveryAPI, GetProductsTo {
     public Product1(){
 
     }
+
     public Product1(String type, double price, int id, int num){
         this.type = type;
         this.price = price;
@@ -39,4 +40,10 @@ public class Product1 implements DeliveryAPI, GetProductsTo {
         return this.type;
     }
 
+    public String toString(){
+        return this.type + "\n"+
+                this.price + "\n"+
+                this.idOfProvider+ "\n"+
+                this.number;
+    }
 }
