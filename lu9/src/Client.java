@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.util.Scanner;
@@ -56,5 +53,26 @@ public class Client {
                 System.err.println("Сокета не може да се затвори");
             }
         }
+//        try {
+//            Socket socket = new Socket("localhost", 1234);
+//            Scanner scanner = new Scanner(new BufferedReader(new InputStreamReader(socket.getInputStream())));
+//            System.out.println(scanner.nextLine());
+//            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+//            out.println("Second Message (from Client to Server)...");
+//            String line = "";
+//            Scanner sc = new Scanner(System.in);
+//            while(!line.equalsIgnoreCase("stop")){
+//                line = sc.nextLine();
+//                out.println(line);
+//                out.flush();
+//            }
+//            System.out.println("Process finished.");
+//            socket.close();
+//            out.close();
+//            sc.close();
+//            System.out.println("Connection closed.");
+//        }catch (IOException e){
+//            e.printStackTrace();
+//        }
     }
 }

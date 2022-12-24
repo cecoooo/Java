@@ -1,7 +1,6 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import com.sun.source.tree.ConditionalExpressionTree;
+
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
@@ -64,5 +63,28 @@ public class Server {
                 System.err.println("Не може да бъде затворен сокет");
             }
         }
+//        try {
+//            ServerSocket serverSocket = new ServerSocket(1234);
+//            Socket socket = serverSocket.accept();
+//            PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
+//            output.println("First Message (from Server to Client)...");
+//            Scanner scanner = new Scanner(new BufferedReader(new InputStreamReader(socket.getInputStream())));
+//            System.out.println(scanner.nextLine());
+//            output.println();
+//            String command = "";
+//            while(true){
+//                scanner = new Scanner(new BufferedReader(new InputStreamReader(socket.getInputStream())));
+//                String info = scanner.nextLine();
+//                System.out.println(info);
+//                if(info.equalsIgnoreCase("stop"))
+//                    break;;
+//            }
+//            System.out.println("Process finished.");
+//            socket.close();
+//            output.close();
+//        }catch (IOException e){
+//            e.printStackTrace();
+//        }
+//        System.out.println("Connection closed.");
     }
 }
