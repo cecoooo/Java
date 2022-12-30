@@ -1,7 +1,5 @@
-import javax.xml.crypto.Data;
 import java.io.*;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class NewClient implements Runnable{
     private Socket socket = null;
@@ -28,6 +26,24 @@ public class NewClient implements Runnable{
                 dataOutputStream.writeUTF("login");
                 LogIntoProfile(socket);
             }
+            else if(firstResponse.equalsIgnoreCase("private-info")){
+                User user = null;
+                StringBuilder stringBuilder = new StringBuilder("Private data from database\n" +
+                        "All usernames:\n");
+                try {
+                    while ((user = (User) Main.ois.readObject()) != null) {
+                        Main.oosHelp.writeObject(user);
+                        stringBuilder.append(user.getUsername()).append("\n");
+                    }
+                }catch (IOException | ClassNotFoundException e){
+                    dataOutputStream.writeUTF(stringBuilder.toString());
+                    try {
+                        while ((user = (User) Main.oisHelp.readObject()) != null) {
+                            Main.oos.writeObject(user);
+                        }
+                    }catch (ClassNotFoundException i){}
+                }
+            }
             else{
                 try {
                     throw new InvalidResponceException();
@@ -52,32 +68,33 @@ public class NewClient implements Runnable{
     private void LogIntoProfile(Socket socket){
         DataOutputStream dataOutputStream = null;
         DataInputStream dataInputStream = null;
-        FileInputStream fis = null;
-        ObjectInputStream ois = null;
-        User user = new User();
+        User user = null;
         boolean isNotLoged = true;
         try{
             dataInputStream = new DataInputStream(socket.getInputStream());
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
             dataOutputStream.writeUTF("Enter password and username.");
-            String password = dataInputStream.readUTF();
             String username = dataInputStream.readUTF();
-            fis = new FileInputStream("C:\\Users\\User\\Desktop\\MultithreadedServerDatabase.ser");
-            ois = new ObjectInputStream(fis);
-            while((user = (User) ois.readObject()) != null){
+            String password = dataInputStream.readUTF();
+            while((user = (User) Main.ois.readObject()) != null){
+                Main.oosHelp.writeObject(user);
                 if(user.getUsername().equals(username) && user.getPassword().equals(password)) {
                     dataOutputStream.writeUTF("You are sign-in!");
                     isNotLoged = false;
                 }
             }
-        }catch (IOException | ClassNotFoundException e){} finally {
+        }catch (IOException | ClassNotFoundException e){
+            try{
+                while((user = (User) Main.oisHelp.readObject()) != null){
+                    Main.oos.writeObject(user);
+                }
+            }catch (IOException | ClassNotFoundException i){}
+        } finally {
             try {
                 if(isNotLoged) dataOutputStream.writeUTF("Wrong password or username!\n" +
                         "Your access is still blocked.");
                 if(dataInputStream != null) dataInputStream.close();
                 if(dataOutputStream != null) dataOutputStream.close();
-                if(fis != null) fis.close();
-                if(ois != null) ois.close();
             }catch (IOException e){
                 e.printStackTrace();
             }
@@ -87,33 +104,31 @@ public class NewClient implements Runnable{
     private void CreateProfile(Socket socket){
         DataOutputStream dataOutputStream = null;
         DataInputStream dataInputStream = null;
-        FileOutputStream fos = null;
-        ObjectOutputStream oos = null;
         User user = new User();
+        boolean isTrue = true;
         try{
             dataInputStream = new DataInputStream(socket.getInputStream());
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
             dataOutputStream.writeUTF("Fulfill all data below.");
             String username = dataInputStream.readUTF();
             String password = dataInputStream.readUTF();
-            String fname = dataInputStream.readUTF();;
-            String lname = dataInputStream.readUTF();;
+            String fname = dataInputStream.readUTF();
+            String lname = dataInputStream.readUTF();
             int age = Integer.parseInt(dataInputStream.readUTF());
             String phone = dataInputStream.readUTF();
             try {
                 user.setUsername(username);
                 if(user.getUsername().equals("")) throw new InvalidUsernameException();
                 user.setPassword(password);
-                if(user.getUsername().equals("")) throw new InvalidPasswordException();
+                if(user.getPassword().equals("")) throw new InvalidPasswordException();
                 user.setFirstName(fname);
-                if(user.getUsername().equals("")) throw new InvalidFirstOrLastNameException();
+                if(user.getFirstName().equals("")) throw new InvalidFirstOrLastNameException();
                 user.setLastName(lname);
-                if(user.getUsername().equals("")) throw new InvalidFirstOrLastNameException();
+                if(user.getLastName().equals("")) throw new InvalidFirstOrLastNameException();
                 user.setAge(age);
-                if(user.getUsername().equals("")) throw new InvalidAgeException();
+                if(user.getAge() == 0) throw new InvalidAgeException();
                 user.setPhone(phone);
-                if(user.getUsername().equals("")) throw new InvalidPhoneException();
-                dataOutputStream.writeUTF("Your account has been just created!");
+                if(user.getPhone().equals("")) throw new InvalidPhoneException();
             }catch (InvalidUsernameException e){
                 dataOutputStream.writeUTF(e.getMessage());
             }catch (InvalidPasswordException e){
@@ -125,22 +140,47 @@ public class NewClient implements Runnable{
             }catch (InvalidPhoneException e){
                 dataOutputStream.writeUTF(e.getMessage());
             }
-            fos = new FileOutputStream("C:\\Users\\User\\Desktop\\MultithreadedServerDatabase.ser");
-            oos = new ObjectOutputStream(fos);
-            oos.writeObject(user);
-            oos.flush();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+            isTrue = VerificationForRepetition(username);
+        }catch (IOException e){}
         finally {
+            try {
+                if (isTrue) {
+                    Main.oos.writeObject(user);
+                    Main.oos.flush();
+                    dataOutputStream.writeUTF("Your account has been just created!");
+                }
+                else dataOutputStream.writeUTF("This username is not already free.");
+            }catch (IOException i){
+                i.printStackTrace();
+            }
             try {
                 if(dataInputStream != null) dataInputStream.close();
                 if(dataOutputStream != null) dataOutputStream.close();
-                if(fos != null) fos.close();
-                if(oos != null) oos.close();
             }catch (IOException e){
                 e.printStackTrace();
             }
         }
+    }
+
+    private boolean VerificationForRepetition(String username){
+        boolean isTrue = true;
+        try{
+            User testUser = null;
+            while((testUser = (User) Main.ois.readObject()) != null){
+                Main.oosHelp.writeObject(testUser);
+                if(testUser.getUsername().equals(username)) isTrue = false;
+            }
+        }catch (IOException | ClassNotFoundException e){
+            try {
+                User testUser = null;
+                while ((testUser = (User) Main.oisHelp.readObject()) != null) {
+                    Main.oos.writeObject(testUser);
+                }
+            }catch (IOException | ClassNotFoundException i){
+                return isTrue;
+            }
+            return isTrue;
+        }
+        return isTrue;
     }
 }

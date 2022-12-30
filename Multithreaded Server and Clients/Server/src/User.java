@@ -10,7 +10,7 @@ public class User implements Serializable, ValidateData {
     private String firstName = "";
     private String lastName = "";
     private int age = 0;
-    private String phone = null;
+    private String phone = "";
 
 
     public User(){

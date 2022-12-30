@@ -93,9 +93,11 @@ public class Main<T> {
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
             printFromServer(dataInputStream);
             print("Username: ");
-            dataOutputStream.writeUTF(scanner.nextLine());
+            String username = scanner.nextLine();
+            dataOutputStream.writeUTF(username.trim());
             print("Password: ");
-            dataOutputStream.writeUTF(scanner.nextLine());
+            String password = scanner.nextLine();
+            dataOutputStream.writeUTF(password.trim());
             printFromServer(dataInputStream);
         }catch (IOException e){
             e.printStackTrace();
