@@ -7,19 +7,18 @@ public class Main {
         ServerSocket serverSocket = null;
         Socket socket = null;
         try{
-            serverSocket = new ServerSocket(130);
-            while(true) {
+            serverSocket = new ServerSocket(5000);
+            while (true){
                 socket = serverSocket.accept();
-                Thread client = new Thread(new User(socket));
-                client.start();
+                Thread thread = new Thread(new NewClient(socket));
+                thread.start();
             }
         }catch (IOException e){
             e.printStackTrace();
-        }
-        finally{
+        }finally {
             try{
-                if(serverSocket != null) serverSocket.close();
-                if(socket != null) socket.close();
+                serverSocket.close();
+                socket.close();
             }catch (IOException e){
                 e.printStackTrace();
             }
