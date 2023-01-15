@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1903b496-7074-4f32-9e53-ce1bb3f9ed19" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Teacher/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/out/production/Server/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/out/production/Server/Admin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/out/production/Server/Grade.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/out/production/Server/Grade.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/out/production/Server/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/out/production/Server/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/out/production/Server/NewClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/out/production/Server/NewClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/out/production/Server/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/out/production/Server/Student.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/out/production/Server/Teacher.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/out/production/Server/Teacher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/out/production/Server/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/out/production/Server/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Grade.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Grade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/NewClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/NewClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Teacher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/User.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2KK2LDp7LDLLIdfW8GkuaLx831Q" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1903b496-7074-4f32-9e53-ce1bb3f9ed19" name="Changes" comment="" />
+      <created>1673708899237</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1673708899237</updated>
+      <workItem from="1673708900813" duration="24000" />
+      <workItem from="1673709014329" duration="15277000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

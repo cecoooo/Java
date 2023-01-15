@@ -1,24 +1,13 @@
 import java.util.ArrayList;
 
-public class Student extends User{
-    private ArrayList<Grade> grades;
+public class Student extends User {
+    private ArrayList<Grade> grades = null;
+    private String fnum;
+    private String egn;
 
     public Student(){
-
+        this.grades = new ArrayList<Grade>();
     }
-    public String getUsername(){
-        return this.username;
-    }
-    public void setUserName(String value){
-        this.username = value;
-    }
-    public String getPassword(){
-        return this.password;
-    }
-    public void setPassword(String value){
-        this.password = value;
-    }
-
     public void addGrade(Grade grade){
         this.grades.add(grade);
     }
@@ -26,6 +15,21 @@ public class Student extends User{
         return this.grades;
     }
 
+
+    public String getFnum() {
+        return this.fnum;
+    }
+    public void setFnum(String fnum) throws InvalidFacultyNumberException{
+        if(ValidateData.Fnum(fnum)) this.fnum = fnum;
+        else throw new InvalidFacultyNumberException();
+    }
+    public String getEgn() {
+        return this.egn;
+    }
+    public void setEgn(String egn) throws InvalidEGNException{
+        if(ValidateData.EGN(egn)) this.egn = egn;
+        else throw new InvalidEGNException();
+    }
 
     @Override
     public String getUserType() {

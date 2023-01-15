@@ -1,4 +1,7 @@
-public class Grade {
+import java.io.Serializable;
+
+public class Grade implements Serializable {
+    private static final long serialVersionUID = 1;
     private String subject;
     private int semester;
     private int grade;
@@ -25,5 +28,9 @@ public class Grade {
 
     public void setGrade(int grade) {
         this.grade = grade;
+    }
+
+    public String toString(){
+        return this.subject+" sem: "+this.semester+" mark: "+this.grade;
     }
 }
