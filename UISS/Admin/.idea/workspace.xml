@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1903b496-7074-4f32-9e53-ce1bb3f9ed19" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Teacher/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/out/production/Server/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/out/production/Server/Admin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/out/production/Server/Grade.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/out/production/Server/Grade.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/out/production/Server/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/out/production/Server/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/out/production/Server/NewClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/out/production/Server/NewClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/out/production/Server/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/out/production/Server/Student.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/out/production/Server/Teacher.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/out/production/Server/Teacher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/out/production/Server/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/out/production/Server/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Grade.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Grade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/NewClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/NewClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Teacher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/User.java" afterDir="false" />
-    </list>
+    <list default="true" id="1903b496-7074-4f32-9e53-ce1bb3f9ed19" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,6 +36,7 @@
       <updated>1673708899237</updated>
       <workItem from="1673708900813" duration="24000" />
       <workItem from="1673709014329" duration="15277000" />
+      <workItem from="1673861417925" duration="51000" />
     </task>
     <servers />
   </component>
