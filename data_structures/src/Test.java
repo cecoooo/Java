@@ -23,20 +23,23 @@ public class Test {
 //        graph.AddConnection("C", "D");
 //        System.out.println(graph.ViewConnections());
 
-        GeneralTree<Integer> tree = new GeneralTree<Integer>(1);
-        tree.add(1, 2);
-        tree.add(1, 3);
-        tree.add(1, 4);
-        tree.add(2, 5);
-        tree.add(2, 6);
-        tree.add(3, 7);
-        tree.add(3, 8);
-        tree.add(4, 9);
-        tree.add(4, 10);
-        tree.add(4, 11);
-        tree.add(8, 12);
-        tree.add(12, 13);
+//        GeneralTree<Integer> tree = new GeneralTree<>(1);
+//        tree.add(1, 2);
+//        tree.add(1, 3);
+//        tree.add(1, 4);
+//        tree.add(2, 5);
+//        tree.add(2, 6);
+//        tree.add(3, 7);
+//        tree.add(3, 8);
+//        tree.add(4, 9);
+//        tree.add(4, 10);
+//        tree.add(4, 11);
+//        tree.add(8, 12);
+//        tree.add(12, 13);
 
-        System.out.println(tree.getHeightOfTree());
+        BinaryTree<Integer> tree = new BinaryTree<>();
+        tree.add(1);
+        tree.add(2);
+        tree.add(3);
     }
 }

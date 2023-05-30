@@ -61,17 +61,6 @@ public class GeneralTree<T> {
         return res;
     }
 
-    public int getHeightOfTree(){
-        return height(this.root,1, 0);
-    }
-
-    private int height(Node curNode, int res, int max){
-        for (int i = 0; i < curNode.getChildren().size(); i++){
-            height(curNode.getChildren().get(i), ++res, max);
-        }
-        return max;
-    }
-
     private void traverse(Node curNode, T value, boolean isNodeNull){
         if(this.root.value == value && isNodeNull) {
             this.currentNode = curNode;
