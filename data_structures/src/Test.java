@@ -37,9 +37,19 @@ public class Test {
 //        tree.add(8, 12);
 //        tree.add(12, 13);
 
-//        BinaryTree<Integer> tree = new BinaryTree<>();
-//        tree.add(1);
-//        tree.add(2);
-//        tree.add(3);
+        BinaryTree<Integer> tree = new BinaryTree<>();
+        tree.add(12);
+        tree.add(7);
+        tree.add(14);
+        tree.add(543);
+        tree.add(2);
+        tree.add(1);
+        tree.add(21);
+        tree.add(242);
+        tree.add(9);
+        tree.add(6);
+        tree.add(532);
+        tree.add(34);
+        System.out.println(tree.getMin());
     }
 }
