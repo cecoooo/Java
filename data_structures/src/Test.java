@@ -51,5 +51,10 @@ public class Test {
         tree.add(532);
         tree.add(34);
         System.out.println(tree.getMin());
+        System.out.println(tree.getMax());
+        tree.remove(543);
+        System.out.println(tree.getMax());
+        tree.remove(1);
+        System.out.println(tree.getMin());
     }
 }
