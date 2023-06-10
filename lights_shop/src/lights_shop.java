@@ -83,11 +83,11 @@ public class lights_shop extends JFrame{
         subData.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String model = txtModel.getText();
-                ResultSet resultSet = null;
+                String modelName = txtModel.getText();
+                int numOFItems;
                 while(true) {
                     try {
-                        int numOFItems = Integer.parseInt(quantity.getText());
+                        numOFItems = Integer.parseInt(quantity.getText());
                         break;
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(null, "Please enter valid number");
@@ -95,11 +95,25 @@ public class lights_shop extends JFrame{
                     }
                 }
                 try {
+                    Model model = null;
                     Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lights_shop", "root", "nPcFu9W^DmCyDP*f");
                     Statement statement = connection.createStatement();
-                    resultSet = statement.executeQuery("select * from models where light_name = name");
+                    ResultSet resultSet = statement.executeQuery("select * from models where name_light = " + "\"" + modelName+ "\"");
                     while(resultSet.next()) {
-                        JOptionPane.showMessageDialog(resultSet.getString(4));
+                        model = new Model(resultSet.getDouble(2), resultSet.getInt(3), resultSet.getString(4), resultSet.getInt(5));
+                    }
+                    if(model != null){
+                        if(model.getQuantity_left() < numOFItems){
+                            JOptionPane.showMessageDialog(null,"Model is available but we do not have that quantity.");
+                        }
+                        else{
+                            StringBuilder sb = new StringBuilder();
+                            sb.append("You successfully ordered ").append(numOFItems).append(" lights of type ").append(modelName);
+                            JOptionPane.showMessageDialog(null, sb.toString());
+                        }
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null,"No model like that in the shop.");
                     }
                 }catch (Exception exx){
                     exx.printStackTrace();
