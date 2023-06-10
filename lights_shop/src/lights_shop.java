@@ -1,6 +1,10 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class lights_shop extends JFrame{
     private JTextField txtName;
@@ -74,6 +78,33 @@ public class lights_shop extends JFrame{
                 quantity.setVisible(false);
                 subData.setVisible(false);
                 chooseAProduct.setVisible(false);
+            }
+        });
+        subData.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String model = txtModel.getText();
+                ResultSet resultSet = null;
+                while(true) {
+                    try {
+                        int numOFItems = Integer.parseInt(quantity.getText());
+                        break;
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "Please enter valid number");
+                        quantity.setText("0");
+                    }
+                }
+                try {
+                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lights_shop", "root", "nPcFu9W^DmCyDP*f");
+                    Statement statement = connection.createStatement();
+                    resultSet = statement.executeQuery("select * from models where light_name = name");
+                    while(resultSet.next()) {
+                        JOptionPane.showMessageDialog(resultSet.getString(4));
+                    }
+                }catch (Exception exx){
+                    exx.printStackTrace();
+                }
+
             }
         });
     }
