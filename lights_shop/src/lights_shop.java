@@ -1,10 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 public class lights_shop extends JFrame{
     private JTextField txtName;
@@ -22,6 +19,8 @@ public class lights_shop extends JFrame{
     private JButton subData;
     private JLabel chooseAProduct;
     private JLabel quan;
+    private JComboBox comboDelivary;
+    private JLabel labelDelivary;
 
     public lights_shop() {
         submitCustomerData.addActionListener(new ActionListener() {
@@ -67,6 +66,8 @@ public class lights_shop extends JFrame{
                 quantity.setVisible(true);
                 subData.setVisible(true);
                 chooseAProduct.setVisible(true);
+                comboDelivary.setVisible(true);
+                labelDelivary.setVisible(true);
             }
             private void makeInvisible(){
                 txtData.setVisible(false);
@@ -78,11 +79,14 @@ public class lights_shop extends JFrame{
                 quantity.setVisible(false);
                 subData.setVisible(false);
                 chooseAProduct.setVisible(false);
+                comboDelivary.setVisible(false);
+                labelDelivary.setVisible(false);
             }
         });
         subData.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Customer customer = createCustomer();
                 String modelName = txtModel.getText();
                 int numOFItems;
                 while(true) {
@@ -91,7 +95,11 @@ public class lights_shop extends JFrame{
                         break;
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(null, "Please enter valid number");
-                        quantity.setText("0");
+                        try {
+                            subData.getActionListeners()[0].wait();
+                        }catch ( InterruptedException exception){
+                            exception.printStackTrace();
+                        }
                     }
                 }
                 try {
@@ -109,6 +117,35 @@ public class lights_shop extends JFrame{
                         else{
                             StringBuilder sb = new StringBuilder();
                             sb.append("You successfully ordered ").append(numOFItems).append(" lights of type ").append(modelName);
+                            ResultSet resultSetCustomers = statement.executeQuery("select name from customers where name = "+ "\"" + txtName.getText()+ "\"");
+                            if(resultSetCustomers.getFetchSize() == 0){
+                                PreparedStatement ps = connection.prepareStatement(" insert into customers (name, email, phone, city)"
+                                        + " values (?, ?, ?, ?)");
+                                ps.setString(1, customer.getName());
+                                ps.setString(2, customer.getEmail());
+                                ps.setString(3, customer.getPhone());
+                                ps.setString(4, customer.getCity());
+                                ps.execute();
+                            }else{
+
+                            }
+                            ResultSet resultSetCustomer = statement.executeQuery("select id from customers where name = "+ "\"" + customer.getName()+ "\"");
+                            Order order = createOrder(resultSetCustomer.getInt(1));
+                            PreparedStatement psO = connection.prepareStatement(" insert into orders (order_date, firm_name, is_filled, customer_id)"
+                                    + " values (?, ?, ?, ?)");
+                            psO.setDate(1, order.getOrderDate());
+                            psO.setString(2, order.getFirmName());
+                            psO.setBoolean(3, order.isFilled());
+                            psO.setInt(4, order.getCustomerId());
+                            psO.execute();
+                            OrderedProduct orderedProduct = createOrderProduct(numOFItems ,modelName, order.getOrderDate(), order.getCustomerId());
+                            PreparedStatement psOP = connection.prepareStatement(" insert into ordered_product (quantity, model_id, order_id)"
+                                    + " values (?, ?, ?, ?)");
+                            psOP.setInt(1, orderedProduct.getQuantity());
+                            psOP.setInt(2, orderedProduct.getModelId());
+                            psOP.setInt(3, orderedProduct.getOrderId());
+                            psOP.execute();
+                            connection.close();
                             JOptionPane.showMessageDialog(null, sb.toString());
                         }
                     }
@@ -118,9 +155,30 @@ public class lights_shop extends JFrame{
                 }catch (Exception exx){
                     exx.printStackTrace();
                 }
-
             }
         });
+    }
+
+    private Customer createCustomer(){
+        return new Customer(this.txtName.getText(), this.txtEmail.getText(), this.txtPhone.getText(), this.txtCity.getText());
+    }
+    private Order createOrder(int cusId){
+        java.util.Date utilDate = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+        return new Order(sqlDate, this.comboDelivary.getToolTipText(), false, cusId);
+    }
+
+    private OrderedProduct createOrderProduct(int numOfItems, String modelName, java.sql.Date orderDate, int CustomerId){
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lights_shop", "root", "nPcFu9W^DmCyDP*f");
+            Statement statement = connection.createStatement();
+            ResultSet resultSetM = statement.executeQuery("select id from models where name_light = " + "\"" + modelName + "\"");
+            ResultSet resultSetO = statement.executeQuery("select id from orders where order_date = " + "\"" + orderDate + "\" and customer_id = "+ "\"" + CustomerId + "\"");
+            return new OrderedProduct(numOfItems, resultSetM.getInt(1), resultSetO.getInt(1));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static void main(String[] args) {
