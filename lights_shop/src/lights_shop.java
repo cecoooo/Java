@@ -10,10 +10,6 @@ public class lights_shop extends JFrame{
     private JTextField txtCity;
     private JButton submitCustomerData;
     private JPanel Main;
-    private JLabel txtData;
-    private JLabel txtDataEmail;
-    private JLabel txtDataPhone;
-    private JLabel txtDataCity;
     private JTextField txtModel;
     private JTextField quantity;
     private JButton subData;
@@ -30,10 +26,6 @@ public class lights_shop extends JFrame{
                 String email = txtEmail.getText();
                 String phone = txtPhone.getText();
                 String city = txtCity.getText();
-                txtData.setText("Name: " + name);
-                txtDataEmail.setText("Email: " + email);
-                txtDataPhone.setText("Phone: " + phone);
-                txtDataCity.setText("City: " + city);
                 if(name.equals("")){
                     JOptionPane.showMessageDialog(null, "Please enter your name");
                     makeInvisible();
@@ -72,8 +64,7 @@ public class lights_shop extends JFrame{
                             JOptionPane.showMessageDialog(null,"Model is available but we do not have that quantity.");
                         }
                         else{
-                            StringBuilder sb = new StringBuilder();
-                            sb.append("You successfully ordered ").append(numOFItems).append(" lights of type ").append(modelName);
+
                             //ResultSet resultSetCustomers = resultSet("select name from customers where name = "+ "\"" + customer.getName() + "\"");
                             insertIntoCustomers(customer);
                             ResultSet resultSetCustomer = resultSet("select id from customers where name = "+ "\"" + customer.getName()+ "\"");
@@ -86,7 +77,7 @@ public class lights_shop extends JFrame{
                             OrderedProduct orderedProduct = createOrderProduct(numOFItems, modelName, order.getOrderDate(), order.getCustomerId());
                             insertIntoOrderedProduct(orderedProduct);
                             connection().close();
-                            JOptionPane.showMessageDialog(null, sb.toString());
+                            JOptionPane.showMessageDialog(null, orderMessage(numOFItems, modelName, customer, order));
                         }
                     }
                     else{
@@ -100,10 +91,6 @@ public class lights_shop extends JFrame{
     }
 
     private void makeVisible(){
-        txtData.setVisible(true);
-        txtDataEmail.setVisible(true);
-        txtDataPhone.setVisible(true);
-        txtDataCity.setVisible(true);
         txtModel.setVisible(true);
         quan.setVisible(true);
         quantity.setVisible(true);
@@ -113,10 +100,6 @@ public class lights_shop extends JFrame{
         labelDelivary.setVisible(true);
     }
     private void makeInvisible(){
-        txtData.setVisible(false);
-        txtDataEmail.setVisible(false);
-        txtDataPhone.setVisible(false);
-        txtDataCity.setVisible(false);
         txtModel.setVisible(false);
         quan.setVisible(false);
         quantity.setVisible(false);
@@ -247,11 +230,26 @@ public class lights_shop extends JFrame{
         }
     }
 
+    private String orderMessage(int numOFItems, String modelName, Customer customer, Order order){
+        StringBuilder sb = new StringBuilder();
+        sb.append("-ORDER DETAILS-\n").append("Model: "+modelName).append("\nQuantity: ").append(numOFItems+"\n").
+                append("Delivery firm: "+order.getFirmName()+"\n\n").
+                append("-YOUR DATA-\n").append("Name: " + customer.getName()+"\n").
+                append("Email: "+customer.getEmail()+"\n").
+                append("Phone: "+customer.getPhone()+"\n").
+                append("City: "+customer.getCity());
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
         lights_shop ls = new lights_shop();
         ls.setContentPane(new lights_shop().Main);
         ls.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ls.setVisible(true);
         ls.pack();
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }
