@@ -1,21 +1,21 @@
 import java.util.Date;
 
 public class Order {
-    private java.sql.Date orderDate;
+    private java.sql.Timestamp orderDate;
     private String firmName;
     private boolean isFilled;
     private int CustomerId;
 
     public Order(){}
 
-    public Order(java.sql.Date date, String firmName, boolean isFilled, int CustomerId){
+    public Order(java.sql.Timestamp date, String firmName, boolean isFilled, int CustomerId){
         this.orderDate = date;
         this.firmName = firmName;
         this.isFilled = isFilled;
         this.CustomerId = CustomerId;
     }
 
-    public java.sql.Date getOrderDate() {
+    public java.sql.Timestamp getOrderDate() {
         return orderDate;
     }
 

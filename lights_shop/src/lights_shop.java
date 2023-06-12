@@ -64,7 +64,6 @@ public class lights_shop extends JFrame{
                             JOptionPane.showMessageDialog(null,"Model is available but we do not have that quantity.");
                         }
                         else{
-
                             //ResultSet resultSetCustomers = resultSet("select name from customers where name = "+ "\"" + customer.getName() + "\"");
                             insertIntoCustomers(customer);
                             ResultSet resultSetCustomer = resultSet("select id from customers where name = "+ "\"" + customer.getName()+ "\"");
@@ -74,7 +73,7 @@ public class lights_shop extends JFrame{
                             }
                             Order order = createOrder(customerGetId);
                             InsertIntoOrders(order);
-                            OrderedProduct orderedProduct = createOrderProduct(numOFItems, modelName, order.getOrderDate(), order.getCustomerId());
+                            OrderedProduct orderedProduct = createOrderProduct(numOFItems, modelName, order.getCustomerId());
                             insertIntoOrderedProduct(orderedProduct);
                             connection().close();
                             JOptionPane.showMessageDialog(null, orderMessage(numOFItems, modelName, customer, order));
@@ -148,16 +147,16 @@ public class lights_shop extends JFrame{
     }
     private Order createOrder(int cusId){
         java.util.Date utilDate = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+        java.sql.Timestamp sqlDate = new java.sql.Timestamp(utilDate.getTime());
         return new Order(sqlDate, this.comboDelivary.getSelectedItem().toString(), false, cusId);
     }
 
-    private OrderedProduct createOrderProduct(int numOfItems, String modelName, java.sql.Date orderDate, int CustomerId){
+    private OrderedProduct createOrderProduct(int numOfItems, String modelName, int CustomerId){
         try {
             int model_id = 0;
             int order_id = 0;
             ResultSet resultSetM = resultSet("select id from models where name_light = " + "\"" + modelName + "\"");
-            ResultSet resultSetO = resultSet("select id from orders where order_date = " + "\"" + orderDate + "\" and customer_id = "+ "\"" + CustomerId + "\"");
+            ResultSet resultSetO = resultSet("select id from orders where customer_id = " + "\"" + CustomerId + "\"");
             while(resultSetM.next()){
                 model_id = resultSetM.getInt(1);
             }
@@ -207,7 +206,7 @@ public class lights_shop extends JFrame{
         try {
             PreparedStatement psO = prepareStatement("insert into orders (order_date, firm_name, is_filled, customer_id)"
                     + " values (?, ?, ?, ?)");
-            psO.setDate(1, order.getOrderDate());
+            psO.setTimestamp(1, order.getOrderDate());
             psO.setString(2, order.getFirmName());
             psO.setBoolean(3, order.isFilled());
             psO.setInt(4, order.getCustomerId());
@@ -247,9 +246,5 @@ public class lights_shop extends JFrame{
         ls.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ls.setVisible(true);
         ls.pack();
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 }
