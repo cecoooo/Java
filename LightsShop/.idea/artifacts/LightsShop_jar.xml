@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="LightsShop:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/LightsShop_jar</output-path>
+    <root id="archive" name="LightsShop.jar">
+      <element id="module-output" name="LightsShop" />
+    </root>
+  </artifact>
+</component>
