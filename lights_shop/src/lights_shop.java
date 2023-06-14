@@ -116,7 +116,7 @@ public class lights_shop extends JFrame{
     }
     private Connection connection(){
         try {
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/lights_shop", "root", "nPcFu9W^DmCyDP*f");
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/lights_shop", "root", "pass");
         }catch (Exception e){
             e.printStackTrace();
             return null;
