@@ -64,7 +64,6 @@ public class lights_shop extends JFrame{
                             JOptionPane.showMessageDialog(null,"Model is available but we do not have that quantity.");
                         }
                         else{
-                            //ResultSet resultSetCustomers = resultSet("select name from customers where name = "+ "\"" + customer.getName() + "\"");
                             insertIntoCustomers(customer);
                             ResultSet resultSetCustomer = resultSet("select id from customers where name = "+ "\"" + customer.getName()+ "\"");
                             int customerGetId = 0;
